@@ -4,7 +4,7 @@ session_start();
 
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    header("Location: success.php");
+    header("Location: commentpage.php");
 }
 
 $page = $_SERVER['PHP_SELF'];

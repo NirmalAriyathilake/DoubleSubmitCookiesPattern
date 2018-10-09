@@ -30,7 +30,7 @@
 	setcookie ($cookiename1, $id1, $expire, "","localhost", FALSE, TRUE); // setting the token into a cookie
 
 	if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-		header("Location: success.php");
+		header("Location: commentpage.php");
 	}
 
 	if(isset($_COOKIE[$cookiename]) && $_COOKIE[$cookiename1]) //checking whether the cookie is set
