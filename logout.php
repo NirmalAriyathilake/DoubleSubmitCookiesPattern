@@ -1,15 +1,28 @@
 <?php
-	session_start();
-	session_destroy();
-	unset($_SESSION['username']);
-	$_SESSION['message'] = "You are successfully logged out";
-	header("Location: login.php");	
+    session_start();
+    
+    //remove PHPSESSID from browser
+    if ( isset( $_COOKIE[session_name()] ) )
+    setcookie( session_name(), null, time()-3600, '/' );
+    //clear session from globals
+    $_SESSION = array();
+    //clear session from disk
+    session_destroy();
+
+    $cookieName = "sessionCookie"; 
+    if ( isset( $_COOKIE[$cookieName] ) )
+    setcookie($cookieName, null, time()-3600, '/');
+
+    $cookieNameCsrf = "csrfTokenCookie";
+    if ( isset( $_COOKIE[$cookieNameCsrf] ) )
+    setcookie($cookieNameCsrf, null, time()-3600, '/');
 ?>
 
 <html>
 <body>
 <script>
-	alert("You are successfully logged out!");
+	alert("You are Successfully Logged out!");
+    window.location.href = "index.php";
 </script>
 </body>
 </html>
